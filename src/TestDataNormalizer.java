@@ -129,9 +129,62 @@ public class TestDataNormalizer {
     }
 
     public static String readNumber(String input){
-        int number = Integer.parseInt(input);
+        if (input == "0");
+        {
+            return "o";
+        }
+        //1-19 pronunciation
+        String[] uniques = {"","one","two","three","four","five","six","seven","eight","nine","ten",
+                "eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen"};
+        String[] tens = {"ten","twenty","thirty","forty","fifty","sixty","seventy","eighty","ninety"};
+        //pronunciation of digits beyond tens
+        String[] others = {"ones","tens","hundred","thousand","thousand","thousand","million",
+                "million","million","billion","billion","billion","trillion","trillion","trillion"};
 
-        return "";
+        String output;
+        int number = Integer.parseInt(input);
+        if (input.length()<=2)
+        {
+            if (number < 20){
+                output = output.concat(uniques[number]);
+                return output;
+            }
+            else{
+                tenDigit = input.charAt(0);
+                numDigit = Integer.parseInt(tenDigit);
+                output = output.concat(tens[numDigit-1]) + " ";
+
+                oneDigit = input.charAt(1);
+                numDigit = Integer.parseInt(oneDigit);
+                output = output.concat(uniques[numDigit]);
+
+                return output;
+            }
+        }
+        else {
+            //convert to number to string, delete first char, convert to number
+            realDigit = input.length();
+            speakingDigit = realDigit % 3;
+            if(speakingDigit == 1){
+                output = output + uniques[speakingDigit];
+            }
+            //check if it should be pronounced like a 1-19 number
+            else if(Integer.parseInt(input.substring(0,speakingDigit)) < 20){
+                output = output + uniques[Integer.parseInt(input.substring(0,speakingDigit))];
+            }
+            else if(Integer.parseInt(input.substring(0,speakingDigit)) >= 20){
+                output = output + tens[Integer.parseInt(input.substring(0,1))-1] + " " + uniques[Integer.parseInt(input.substring(1,2))];
+            }
+            else {
+                output = output + uniques[Integer.parseInt(input.substring(0,1))] + "hundred";
+            }
+            //adding in the "billion", "million"... etc keywords
+            output = output + " " + others[realDigit-1] + " ";
+            input = input.substring(1);
+            return readNumber(input);
+        }
     }
 
 }
+
+
