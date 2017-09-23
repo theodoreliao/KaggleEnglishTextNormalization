@@ -44,7 +44,13 @@ public class TestDataNormalizer {
     }
 
     private static String readYear(String before) {
-        return "";
+        int num = Integer.parseInt(before);
+        if(num >= 2000 && num < 2010){
+            return readNumber(before);
+        }
+        else{
+            return readNumber(before.substring(0, 2)) + readNumber(before.substring(2));
+        }
     }
 
     private static String readRomanNumeral(String before) {

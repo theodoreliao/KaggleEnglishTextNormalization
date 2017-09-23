@@ -10,7 +10,7 @@ public class TextNormalizer {
 
     public static void main(String[] args){
 //        System.out.println("started");
-//        String filepath = "C:/Users/juneg/IdeaProjects/KaggleEnglishTextNormalization/Data/en_train.csv/en_train.csv";
+//        String filepath = "$PROJECT_DIR$/Data/en_train.csv/en_train.csv";
 //        LinkedList<Pair<String, String>> inputText = readTrainCsv(filepath);
 //        System.out.println("read file");
 //        LinkedList<Pair<String, String>> changedEntries = normalizedTextEntries(inputText);
