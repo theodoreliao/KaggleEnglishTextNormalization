@@ -1,8 +1,6 @@
 public class TestDataNormalizer {
 
     public static void main(String[] args){
-
-
     }
 
     public static String identifyAndNormalize(String before){
@@ -39,11 +37,31 @@ public class TestDataNormalizer {
 
         if(before.matches("[0-9,]*")){
             //remove commas
-            return readNumber(before);
+            return readNumber(before.replaceAll(",", ""));
         }
 
+        return null;
+    }
 
+    private static String readYear(String before) {
+        return "";
+    }
 
+    private static String readRomanNumeral(String before) {
+        return "";
+    }
+
+    public static String spreadAcronym(String input){
+        String output = "";
+        input = input.toLowerCase();
+        for(char c: input.toCharArray()){
+            output += c + " ";
+        }
+        return output.trim();
+    }
+
+    public static String readNumber(String input){
+        return "";
     }
 
 }
